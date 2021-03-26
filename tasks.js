@@ -34,7 +34,7 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
-  if (text.trim() === 'quit'||text.trim()==='exit') {
+  if (text.trim() === 'quit') {
     quit();
   }
   else if(text.trim() === 'hello'){
@@ -79,4 +79,4 @@ function quit(){
 }
 
 // The following line starts the application
-startApp("Jad Sarout")
+startApp("Hilal Masri")
