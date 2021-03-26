@@ -38,10 +38,14 @@ function onDataReceived(text) {
   if (text.trim() === 'quit'||text.trim()==='exit') {
     quit();
   }
-  else if(text.trim().split(" ",1) == 'hello'){
-   
+  else if(text.trim().split(" ",1) == 'hello' || text.trim()==='hello'){
+   if(text.trim()==='hello'){
+     var tt="";
+     hello(tt);
+   }else{
     var nameUser=text.trim().substring((text.trim()).lastIndexOf(" ")+1);
     hello(nameUser);
+   }
   }
   else if(text.trim()==='help'){
     help();
@@ -70,7 +74,12 @@ function unknownCommand(c){
  * @returns {void}
  */
 function hello(nameUser){
+  if(nameUser===""){
+    console.log('hello!');
+  }
+  else{
   console.log('hello '+nameUser+'!')
+  }
 }
 
 
