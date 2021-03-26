@@ -47,7 +47,7 @@ function onDataReceived(text) {
     hello(nameUser);
    }
   }
-  else if(text.trim()==='help'){
+  else if(text.trim()==='help' || text.trim().split(" ",1) == 'help'){
     help();
   }
   else{
