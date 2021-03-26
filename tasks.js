@@ -40,6 +40,9 @@ function onDataReceived(text) {
   else if(text.trim() === 'hello'){
     hello();
   }
+  else if(text.trim()==='help'){
+    help();
+  }
   else{
     unknownCommand(text);
   }
@@ -76,6 +79,12 @@ function hello(){
 function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
+}
+/** 
+@returns {void}
+*/
+function help(){
+  console.log("hello ,quit or exit ");
 }
 
 // The following line starts the application
