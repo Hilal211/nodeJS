@@ -121,6 +121,7 @@ function quit() {
   var fs = require('fs');
   var data = JSON.stringify(tasksD);
   fs.writeFileSync('database.json', data);
+  fs.writeFileSync('process.argv',data);
   console.log('Quitting now, goodbye!')
   process.exit();
 }
