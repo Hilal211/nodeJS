@@ -34,8 +34,9 @@ function startApp(name){
  * @returns {void}
  */
 console.log('writ hello and your name:');
+var tasks=['hello','quit','exit','help'];
 function onDataReceived(text) {
-  var tasks=['hello','quit','exit','help']
+  
   if (text.trim() === 'quit'||text.trim()==='exit') {
     quit();
   }
@@ -53,6 +54,11 @@ function onDataReceived(text) {
   }
   else if(text.trim()==='list'){
     list(tasks);
+  }
+  else if(text.trim().split(" ",1)=='add'){
+    var element;
+    element=text.trim().split(" ").pop().trim();
+    add(element,tasks)
   }
   else{
     unknownCommand(text);
@@ -112,6 +118,19 @@ function help(){
 function list(tasks){
 for(let i=0;i<tasks.length;i++){
   console.log((i+1)+"-"+tasks[i]+"\n");
+}
+}
+/**
+ * 
+ * @returns {void}
+ * 
+ */
+function add(element,tasks){
+if(element==='add'){
+  console.log("error");
+}
+else{
+ tasks=tasks.push(element);
 }
 }
 
