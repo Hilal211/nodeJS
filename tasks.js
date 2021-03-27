@@ -60,6 +60,10 @@ function onDataReceived(text) {
     element=text.trim().split(" ").pop().trim();
     add(element,tasks)
   }
+  else if(text.trim().split(" ",1)=='remove'){
+    var re=text.trim().split(" ").pop().trim();
+    remove(re,tasks);
+  }
   else{
     unknownCommand(text);
   }
@@ -132,6 +136,17 @@ if(element==='add'){
 else{
  tasks=tasks.push(element);
 }
+}
+/**
+ * @returns {void}
+ */
+function remove(re,tasks){
+  if(re==='remove'){
+    tasks.pop()
+  }
+  else{
+    tasks.splice(parseInt(re)-1,1);
+  }
 }
 
 // The following line starts the application
