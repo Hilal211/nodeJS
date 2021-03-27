@@ -64,6 +64,10 @@ function onDataReceived(text) {
     var re=text.trim().split(" ").pop().trim();
     remove(re,tasks);
   }
+  else if(text.trim().split(" ",1)=='edit'){
+    var ed=text.trim().split(" ");
+    edit(ed,tasks);
+  }
   else{
     unknownCommand(text);
   }
@@ -154,6 +158,23 @@ function remove(re,tasks){
     else{
       console.log(re+" is not exist")
     }
+  }
+}
+
+/**
+ * @returns {void}
+ */
+function edit(re,tasks){
+  if(re.length==1){
+    console.log("error");
+  }
+  else if(re.length==2){
+    tasks[tasks.length-1]=re[1];
+    console.log("last tasks edited")
+  }
+  else if(re.length==3){
+    tasks[re[1]-1]=re[2];
+    console.log("task "+re[1]+" edited")
   }
 }
 
