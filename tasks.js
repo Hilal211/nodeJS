@@ -87,6 +87,14 @@ function onDataReceived(text) {
     var ed=text.trim().split(" ");
     edit(ed,tasks);
   }
+  else if(text.trim().split(" ",1)=='check'){
+    var che=text.trim().split(" ");
+    check(tasksD,che);
+  }
+  else if(text.trim().split(" ",1)=='uncheck'){
+    var chec=text.trim().split(" ");
+    uncheck(tasksD,chec);
+  }
   else{
     unknownCommand(text);
   }
@@ -201,7 +209,29 @@ function edit(re,tasks){
     console.log("task "+re[1]+" edited")
   }
 }
+/**
+ * @returns {void}
+ */
+ function check(tasksD,che){
+   if(che.length==1){
+     console.log("error");
+   }
+   else{
+     tasksD[che[1]-1].done=true;
+   }
+ }
 
+ /**
+  * @returns {void}
+  */
+ function uncheck(tasksD,chec){
+  if(chec.length==1){
+    console.log("error");
+  }
+  else{
+    tasksD[chec[1]-1].done=false;
+  }
+}
  
 
 // The following line starts the application
