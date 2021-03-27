@@ -33,8 +33,27 @@ function startApp(name){
  * @param  {string} text data typed by the user
  * @returns {void}
  */
-console.log('writ hello and your name:');
+
 var tasks=['hello','quit','exit','help'];
+var tasksD = [
+  {
+    name: "hello",
+    done: true
+  },
+  {
+    name: "quit",
+    done: false
+  },
+  {
+    name: "exit",
+    done: true
+  },
+  {
+    name: "help",
+    done: false
+  }
+]
+
 function onDataReceived(text) {
   
   if (text.trim() === 'quit'||text.trim()==='exit') {
@@ -53,7 +72,7 @@ function onDataReceived(text) {
     help();
   }
   else if(text.trim()==='list'){
-    list(tasks);
+    list(tasksD);
   }
   else if(text.trim().split(" ",1)=='add'){
     var element;
@@ -123,9 +142,14 @@ function help(){
  * 
  * @returns {void}
  */
-function list(tasks){
-for(let i=0;i<tasks.length;i++){
-  console.log((i+1)+"-"+tasks[i]+"\n");
+function list(tasksD){
+for(let i=0;i<tasksD.length;i++){
+  if(tasksD[i].done){
+    console.log("[✓] "+tasksD[i].name)
+  }
+  else{
+    console.log("[ ] "+tasksD[i].name)
+  }
 }
 }
 /**
@@ -177,6 +201,8 @@ function edit(re,tasks){
     console.log("task "+re[1]+" edited")
   }
 }
+
+ 
 
 // The following line starts the application
 startApp("Hilal Masri")
