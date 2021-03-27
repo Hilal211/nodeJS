@@ -77,15 +77,15 @@ function onDataReceived(text) {
   else if(text.trim().split(" ",1)=='add'){
     var element;
     element=text.trim().split(" ").pop().trim();
-    add(element,tasks)
+    add(element,tasksD)
   }
   else if(text.trim().split(" ",1)=='remove'){
     var re=text.trim().split(" ").pop().trim();
-    remove(re,tasks);
+    remove(re,tasksD);
   }
   else if(text.trim().split(" ",1)=='edit'){
     var ed=text.trim().split(" ");
-    edit(ed,tasks);
+    edit(ed,tasksD);
   }
   else if(text.trim().split(" ",1)=='check'){
     var che=text.trim().split(" ");
@@ -165,26 +165,30 @@ for(let i=0;i<tasksD.length;i++){
  * @returns {void}
  * 
  */
-function add(element,tasks){
+function add(element,tasksD){
 if(element==='add'){
   console.log("error");
 }
 else{
- tasks=tasks.push(element);
+  let newTask={
+    name:element.trim(),
+    done:false
+  };
+ tasksD.push(newTask);
  console.log(element+" is added");
 }
 }
 /**
  * @returns {void}
  */
-function remove(re,tasks){
+function remove(re,tasksD){
   if(re==='remove'){
-    tasks.pop()
+    tasksD.pop()
     console.log("the last tasks is deleted")
   }
   else{
     if(re>=0 && re<=tasks.length){
-    tasks.splice(parseInt(re)-1,1);
+    tasksD.splice(parseInt(re)-1,1);
     console.log("tasks"+re+" is deleted");
     }
     else{
@@ -196,16 +200,16 @@ function remove(re,tasks){
 /**
  * @returns {void}
  */
-function edit(re,tasks){
+function edit(re,tasksD){
   if(re.length==1){
     console.log("error");
   }
   else if(re.length==2){
-    tasks[tasks.length-1]=re[1];
+    tasksD[tasksD.length-1].name=re[1];
     console.log("last tasks edited")
   }
   else if(re.length==3){
-    tasks[re[1]-1]=re[2];
+    tasksD[re[1]-1].name=re[2];
     console.log("task "+re[1]+" edited")
   }
 }
@@ -233,6 +237,7 @@ function edit(re,tasks){
   }
 }
  
+
 
 // The following line starts the application
 startApp("Hilal Masri")
