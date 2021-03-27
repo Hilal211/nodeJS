@@ -35,6 +35,7 @@ function startApp(name){
  */
 console.log('writ hello and your name:');
 function onDataReceived(text) {
+  var tasks=['hello','quit','exit','help']
   if (text.trim() === 'quit'||text.trim()==='exit') {
     quit();
   }
@@ -49,6 +50,9 @@ function onDataReceived(text) {
   }
   else if(text.trim()==='help' || text.trim().split(" ",1) == 'help'){
     help();
+  }
+  else if(text.trim()==='list'){
+    list(tasks);
   }
   else{
     unknownCommand(text);
@@ -99,6 +103,16 @@ function quit(){
 */
 function help(){
   console.log("hello ,quit or exit ");
+}
+
+/**
+ * 
+ * @returns {void}
+ */
+function list(tasks){
+for(let i=0;i<tasks.length;i++){
+  console.log((i+1)+"-"+tasks[i]+"\n");
+}
 }
 
 // The following line starts the application
