@@ -147,8 +147,13 @@ function remove(re,tasks){
     console.log("the last tasks is deleted")
   }
   else{
+    if(re>=0 && re<=tasks.length){
     tasks.splice(parseInt(re)-1,1);
     console.log("tasks"+re+" is deleted");
+    }
+    else{
+      console.log(re+" is not exist")
+    }
   }
 }
 
