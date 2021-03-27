@@ -143,7 +143,7 @@ function quit(){
 @returns {void}
 */
 function help(){
-  console.log("hello ,quit or exit,list,add,remove");
+  console.log("hello ,quit or exit,list,add,remove,check,uncheck");
 }
 
 /**
