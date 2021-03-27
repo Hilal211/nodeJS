@@ -112,7 +112,7 @@ function quit(){
 @returns {void}
 */
 function help(){
-  console.log("hello ,quit or exit ");
+  console.log("hello ,quit or exit,list,add,remove");
 }
 
 /**
@@ -135,6 +135,7 @@ if(element==='add'){
 }
 else{
  tasks=tasks.push(element);
+ console.log(element+" is added");
 }
 }
 /**
@@ -143,9 +144,11 @@ else{
 function remove(re,tasks){
   if(re==='remove'){
     tasks.pop()
+    console.log("the last tasks is deleted")
   }
   else{
     tasks.splice(parseInt(re)-1,1);
+    console.log("tasks"+re+" is deleted");
   }
 }
 
