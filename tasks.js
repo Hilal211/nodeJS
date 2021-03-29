@@ -9,12 +9,14 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
+ var dataName;
 function startApp(name) {
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
   console.log(`Welcome to ${name}'s application!`)
   console.log("--------------------")
+  
 }
 
 
@@ -35,14 +37,14 @@ function startApp(name) {
  */
 
 var tasks = ['hello', 'quit', 'exit', 'help'];
+var fs = require('fs');
 
-var fs=require('fs');
-var data=fs.readFileSync('database.json','utf-8');
-try {
-  if (data == "") throw "Empty"
-}
-catch { data = '[{ "name": "hi", "done": true }] ' }
-var tasksD=JSON.parse(data);
+
+const ddd=chooseData();
+
+data=fs.readFileSync(ddd,'utf-8');
+
+var tasksD = JSON.parse(data);
 
 
 
@@ -113,7 +115,7 @@ function unknownCommand(c) {
  */
 function hello(nameUser) {
   if (nameUser === "") {
-    console.log('hello!');
+    console.log(pp);
   }
   else {
     console.log('hello ' + nameUser + '!')
@@ -127,9 +129,13 @@ function hello(nameUser) {
  * @returns {void}
  */
 function quit() {
-  var fs = require('fs');
+  var dt = JSON.stringify(tasksD);
+  if (process.argv.length > 2) {
+    fs.writeFileSync(ddd, dt);
+  } else {
+    fs.writeFileSync('database.json', dt);
+  }
 
-  fs.writeFileSync('database.json', data);
   console.log('Quitting now, goodbye!')
   process.exit();
 }
@@ -234,8 +240,25 @@ function uncheck(tasksD, chec) {
   }
 }
 
+function chooseData() {
+  const fs=require('fs');
+  if (process.argv[2] == undefined) {
+    return dataName = 'database.json';
+  }
+  else {
+    const path = process.argv[2];
+    if (fs.existsSync(path)) {
+      return dataName = process.argv[2];
+    }
+    else {
+      
+      const z=[{ "name": "hi", "done": true }];
+      dataName = process.argv[2];
+      fs.writeFileSync(process.argv[2],JSON.stringify(z))
+      
+      return dataName;
+    }
+  }
 
-
-
-// The following line starts the application
+}
 startApp("Hilal Masri")
