@@ -35,9 +35,18 @@ function startApp(name) {
  */
 
 var tasks = ['hello', 'quit', 'exit', 'help'];
+
 var fs=require('fs');
 var data=fs.readFileSync('database.json','utf-8');
+try {
+  if (data == "") throw "Empty"
+}
+catch { data = '[{ "name": "hi", "done": true }] ' }
 var tasksD=JSON.parse(data);
+
+
+
+
 function onDataReceived(text) {
 
   if (text.trim() === 'quit' || text.trim() === 'exit') {
@@ -119,9 +128,8 @@ function hello(nameUser) {
  */
 function quit() {
   var fs = require('fs');
-  var data = JSON.stringify(tasksD);
+
   fs.writeFileSync('database.json', data);
-  fs.writeFileSync('process.argv',data);
   console.log('Quitting now, goodbye!')
   process.exit();
 }
